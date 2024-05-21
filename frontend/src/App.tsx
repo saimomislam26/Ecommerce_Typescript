@@ -1,33 +1,54 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+
+import './index.css'
 import { sampleProducts } from './data'
+import { Col, Container, Nav, Navbar, NavbarBrand, Row } from 'react-bootstrap'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <div>
-      <header>Becha Kena</header>
+    <div className='d-flex flex-column vh-100' >
+      <header>
+        <Navbar bg="dark" variant='dark' expand="lg">
+          <Container>
+            <NavbarBrand>
+              Becha Kena
+            </NavbarBrand>
+          </Container>
+          <Nav>
+            <a href="/cart" className='nav-link'>
+              Cart
+            </a>
+            <a href="/signin" className='nav-link'>
+              Sign In
+            </a>
+          </Nav>
+        </Navbar>
+      </header>
       <main>
-        {
-          sampleProducts.map((product) => {
-            return (
-              <li key={product.slug}>
-                <img
-                 src={product.image} 
-                 alt={product.name} 
-                 className='product-image'
-                 />
-                <h2>{product.name}</h2>
-                <p>{product.price}</p>
-              </li>
-            )
+        <Container className='mt-3'>
+          <Row>
+            {
+              sampleProducts.map((product) => {
+                return (
+                  <Col key={product.slug} sm={6} md={4} lg={3}>
+                    <img
+                      src={product.image}
+                      alt={product.name}
+                      className='product-image'
+                    />
+                    <h2>{product.name}</h2>
+                    <p>{product.price}</p>
+                  </Col>
+                )
 
-          })
-        }
+              })
+            }
+          </Row>
+
+        </Container>
       </main>
+      <footer>
+        <div className='text-center'>All Rights Reserved</div>
+      </footer>
     </div>
   )
 }
